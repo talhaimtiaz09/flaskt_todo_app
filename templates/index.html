@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block x %}
+
+<div class="container my-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Todo List</h3>
+      </div>
+      <div class="card-body">
+        <form action="/" method="POST">
+          <div class="form-group">
+            <label for="todoInput">Add a new todo:</label>
+            <input type="text" class="form-control" id="todoInput" name="content">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Add Todo</button>
+        </form>
+        <hr>
+        <ul class="list-group">
+            {% for task in tasks %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{task.content}}
+            <span>{{task.date_created}}</span>
+            <div class="btn-group" role="group" aria-label="Todo actions">
+              <a class="btn btn-outline-danger" href="/delete/{{task.id}}">Delete</a>
+              <a class="btn btn-outline-primary" href="/update/{{task.id}}">Update</a>
+              <a class="btn btn-outline-success" href="/delete/{{task.id}}">Completed</a>
+
+            </div>
+            {% endfor %}
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
